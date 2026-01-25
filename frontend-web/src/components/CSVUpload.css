@@ -1,0 +1,24 @@
+.csv-upload { max-width: 720px; margin: 0 auto; }
+.csv-upload h2 { color: var(--text); margin-bottom: 10px; }
+.description { color: var(--muted); margin-bottom: 16px; font-size: 14px; }
+
+.file-input-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 16px; background: var(--surface);
+  border: 2px dashed var(--primary); border-radius: 12px; cursor: pointer;
+  font-weight: 700; color: var(--primary); transition: all 0.2s ease;
+}
+.file-input-label:hover { background: rgba(99,102,241,0.08); }
+#file-input { display: none; }
+
+.file-selected {
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 10px; padding: 12px; margin: 16px 0; color: #10b981;
+}
+.file-selected p { margin: 4px 0; }
+.file-size { font-size: 12px; opacity: 0.8; }
+
+.example-csv { margin-top: 20px; padding: 16px; background: var(--surface); border-radius: 10px; border-left: 4px solid var(--primary); }
+.example-csv h3 { color: var(--muted); margin: 0 0 8px 0; }
+.example-csv pre { background: var(--card-bg); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 12px; color: var(--text); border: 1px solid var(--border); }
