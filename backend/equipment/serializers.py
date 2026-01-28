@@ -13,21 +13,27 @@ class UserSerializer(serializers.ModelSerializer):
 class EquipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipment
-        fields = ('id', 'equipment_name', 'equipment_type', 'flowrate', 'pressure', 'temperature', 'created_at')
+        fields = ('id', 'equipment_name', 'equipment_type', 'flowrate', 'pressure', 'temperature', 'upload', 'created_at')
         read_only_fields = ('id', 'created_at')
 
 
 class DataUploadSerializer(serializers.ModelSerializer):
     equipment_count = serializers.SerializerMethodField()
+    equipment_distribution = serializers.SerializerMethodField()
     
     class Meta:
         model = DataUpload
         fields = ('id', 'filename', 'uploaded_at', 'total_records', 'avg_flowrate', 
-                  'avg_pressure', 'avg_temperature', 'equipment_count')
+                  'avg_pressure', 'avg_temperature', 'equipment_count', 'equipment_distribution')
         read_only_fields = ('id', 'uploaded_at')
     
     def get_equipment_count(self, obj):
         return obj.equipment_items.count()
+
+    def get_equipment_distribution(self, obj):
+        from django.db.models import Count
+        dist = obj.equipment_items.values('equipment_type').annotate(count=Count('equipment_type'))
+        return {item['equipment_type']: item['count'] for item in dist}
 
 
 class DataSummarySerializer(serializers.Serializer):

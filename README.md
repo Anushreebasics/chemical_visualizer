@@ -105,9 +105,9 @@ chemical-equipment-visualizer/
 cd chemical-equipment-visualizer/backend
 ```
 
-2. Create and activate virtual environment (Python 3.8–3.11 required for PyQt5):
+2. Create and activate virtual environment:
 ```bash
-python3.11 -m venv venv
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
@@ -115,8 +115,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
-# If you get an error for PyQt5, run this instead:
-python -m pip install PyQt5
 ```
 
 4. Apply migrations:

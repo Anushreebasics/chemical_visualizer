@@ -13,6 +13,7 @@ function Dashboard({ setIsAuthenticated }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [activeTab, setActiveTab] = useState('summary');
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -48,8 +49,16 @@ function Dashboard({ setIsAuthenticated }) {
     }
   };
 
-  const handleUploadSuccess = () => {
+  const handleUploadSuccess = (message, recordCount) => {
     fetchData();
+    // Show success message at the top of the page
+    setSuccessMessage(`CSV uploaded successfully! ${recordCount} records added. Redirecting to summary...`);
+    // Automatically navigate to summary page after successful upload
+    setTimeout(() => {
+      setActiveTab('summary');
+      // Clear success message after navigation
+      setTimeout(() => setSuccessMessage(''), 3000);
+    }, 2000);
   };
 
   const handleLogout = async () => {
@@ -137,6 +146,7 @@ function Dashboard({ setIsAuthenticated }) {
 
         <section className="content">
           {error && <div className="alert alert-error">{error}</div>}
+          {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
           {activeTab === 'upload' && (
             <div className="panel card">
