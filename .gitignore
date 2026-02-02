@@ -28,6 +28,8 @@ venv/
 ENV/
 env/
 .venv
+backend/venv/
+frontend-desktop/venv/
 
 # Django
 *.log
@@ -36,6 +38,9 @@ db.sqlite3
 db.sqlite3-journal
 /media
 /staticfiles
+backend/db.sqlite3
+backend/staticfiles/
+*.pyc
 
 # Python tooling
 .pytest_cache/
@@ -51,6 +56,8 @@ npm-debug.log
 yarn-error.log
 .next/
 out/
+frontend-web/build/
+frontend-web/node_modules/
 
 # IDEs
 .vscode/
@@ -64,6 +71,11 @@ out/
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
+backend/.env
+frontend-web/.env
+*.secret
 
 # OS
 .DS_Store
@@ -74,3 +86,18 @@ build/
 dist/
 *.dmg
 *.exe
+
+# Production files
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Deployment
+.vercel
+.render
+
+# Secrets and keys
+secret_key.txt
+*.pem
+*.key
