@@ -42,17 +42,16 @@ class LoginDialog(QDialog):
         root_layout.setAlignment(Qt.AlignCenter)
 
         # Card Container
-        card = QFrame()
-        card.setObjectName("card")
+        card = StyleHelper.create_card_frame()
         card.setFixedWidth(380)
         
         layout = QVBoxLayout(card)
         layout.setContentsMargins(40, 40, 40, 40)
         layout.setSpacing(24)
 
-        # Logo
-        logo_label = QLabel('⚗️')
-        logo_label.setStyleSheet("font-size: 56px; margin-bottom: 10px;")
+        # Logo (Text based)
+        logo_label = QLabel('CE')
+        logo_label.setStyleSheet("font-size: 48px; font-weight: 800; color: #6366f1; margin-bottom: 5px;")
         logo_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(logo_label)
 

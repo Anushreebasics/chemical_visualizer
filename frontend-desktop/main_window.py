@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
         brand_layout = QHBoxLayout()
         brand_layout.setSpacing(12)
         
-        logo = QLabel("⚗️")
+        logo = QLabel("CE")
         logo.setStyleSheet("font-size: 28px;")
         brand_layout.addWidget(logo)
         
@@ -106,10 +106,10 @@ class MainWindow(QMainWindow):
         # Navigation
         self.nav_buttons = []
         nav_items = [
-            ("Summary", 0, "  📊"),
-            ("Charts", 1, "  📈"),
-            ("Upload CSV", 2, "  📤"),
-            ("History", 3, "  📋"),
+            ("Summary", 0, ""),
+            ("Charts", 1, ""),
+            ("Upload CSV", 2, ""),
+            ("History", 3, ""),
         ]
 
         section_lbl = QLabel("MENU")
@@ -118,7 +118,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(section_lbl)
         
         for label, idx, icon in nav_items:
-            btn = QPushButton(f"{icon}   {label}")
+            btn = QPushButton(f"{label}")
             btn.setObjectName("navBtn")
             btn.setCheckable(True)
             btn.setCursor(Qt.PointingHandCursor)
@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
         uc_layout = QHBoxLayout(user_card)
         uc_layout.setContentsMargins(12, 12, 12, 12)
         
-        avatar = QLabel("👤")
+        avatar = QLabel("U")
         avatar.setStyleSheet("background-color: #334155; border-radius: 16px; padding: 6px;")
         
         u_info = QVBoxLayout()
@@ -213,7 +213,7 @@ class MainWindow(QMainWindow):
         layout.setSpacing(24)
 
         # Welcome Section
-        welcome = QLabel(f"Welcome back, {self.user.get('first_name', self.user.get('username'))} 👋")
+        welcome = QLabel(f"Welcome back, {self.user.get('first_name', self.user.get('username'))}")
         welcome.setStyleSheet("font-size: 16px; color: #94a3b8;")
         layout.addWidget(welcome)
 
@@ -223,10 +223,10 @@ class MainWindow(QMainWindow):
         row.setSpacing(20)
         
         stats = [
-            ("Total Records", "total_count", "🔢"),
-            ("Avg Flowrate", "avg_flowrate", "🌊"),
-            ("Avg Pressure", "avg_pressure", "⚡"),
-            ("Avg Temp", "avg_temperature", "🌡️"),
+            ("Total Records", "total_count", ""),
+            ("Avg Flowrate", "avg_flowrate", ""),
+            ("Avg Pressure", "avg_pressure", ""),
+            ("Avg Temp", "avg_temperature", ""),
         ]
 
         for label, key, icon in stats:
@@ -285,19 +285,19 @@ class MainWindow(QMainWindow):
         ac_title.setObjectName("sectionTitle")
         ac_layout.addWidget(ac_title)
         
-        pdf_btn = QPushButton("📄   Generate Report")
+        pdf_btn = QPushButton("Generate Report")
         pdf_btn.setObjectName("primaryBtn")
         pdf_btn.setFixedHeight(45)
         pdf_btn.setCursor(Qt.PointingHandCursor)
         pdf_btn.clicked.connect(self.generate_pdf)
         
-        refresh_btn = QPushButton("🔄   Refresh Data")
+        refresh_btn = QPushButton("Refresh Data")
         refresh_btn.setFixedHeight(45)
         refresh_btn.setCursor(Qt.PointingHandCursor)
         refresh_btn.clicked.connect(self.load_all_data)
         
         # New Quick Action
-        upload_btn = QPushButton("📤   Upload New File")
+        upload_btn = QPushButton("Upload New File")
         upload_btn.setFixedHeight(45)
         upload_btn.setCursor(Qt.PointingHandCursor)
         upload_btn.clicked.connect(lambda: self.set_active_nav(2)) # Navigate to Upload tab
@@ -389,7 +389,7 @@ class MainWindow(QMainWindow):
         card_layout.setContentsMargins(40, 40, 40, 40)
         card_layout.setSpacing(24)
 
-        icon = QLabel("📤")
+        icon = QLabel("Upload")
         icon.setAlignment(Qt.AlignCenter)
         icon.setStyleSheet("font-size: 48px; margin-bottom: 10px;")
         card_layout.addWidget(icon)
@@ -447,7 +447,7 @@ class MainWindow(QMainWindow):
 
         # Search Bar
         search_layout = QHBoxLayout()
-        search_lbl = QLabel("🔍")
+        search_lbl = QLabel("Search:")
         search_lbl.setStyleSheet("font-size: 16px; color: #94a3b8;")
         
         self.search_input = QLineEdit()
