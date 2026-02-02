@@ -47,6 +47,13 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(1200, 760)
         self.resize(1400, 850)
         self.setWindowIcon(self.create_icon())
+        self.showMaximized()  # Open full screen by default
+
+        # Center logic (in case not maximized)
+        screen_geometry = self.screen().availableGeometry()
+        x = (screen_geometry.width() - self.width()) // 2
+        y = (screen_geometry.height() - self.height()) // 2
+        self.move(x, y)
 
         root = QWidget()
         root.setObjectName("rootFrame")

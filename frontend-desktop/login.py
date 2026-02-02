@@ -24,17 +24,74 @@ class LoginDialog(QDialog):
         self.user = None
         self.init_ui()
         
+        # Center on screen
+        screen_geometry = self.screen().availableGeometry()
+        x = (screen_geometry.width() - self.width()) // 2
+        y = (screen_geometry.height() - self.height()) // 2
+        self.move(x, y)
+        
         # Apply palette for elements not covered by stylesheet
         StyleHelper.set_dark_palette(self)
 
     def init_ui(self):
         self.setWindowTitle('Chemical Equipment Visualizer')
         self.setGeometry(0, 0, 480, 550)
-        self.setStyleSheet(STYLESHEET)
-        
-        # Center on screen (approximate if no parent)
-        if self.parent():
-            self.move(self.parent().window().frameGeometry().center() - self.rect().center())
+        # Custom Stylesheet for Login Dialog (overrides global dark theme)
+        self.setStyleSheet("""
+            QDialog {
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #667eea, stop:1 #764ba2);
+            }
+            QFrame#card {
+                background-color: #ffffff;
+                border-radius: 12px;
+                border: none;
+            }
+            QLabel {
+                color: #333333;
+                font-family: 'Inter', sans-serif;
+            }
+            QLabel#headerTitle {
+                font-size: 28px;
+                font-weight: 700;
+                color: #667eea;
+                margin-bottom: 8px;
+            }
+            QLabel#subText {
+                font-size: 14px;
+                color: #666666;
+            }
+            QLineEdit {
+                background-color: #ffffff;
+                border: 1px solid #e2e8f0;
+                border-radius: 10px;
+                padding: 10px 14px;
+                color: #1e293b;
+                font-size: 14px;
+            }
+            QLineEdit:focus {
+                border: 1px solid #667eea;
+            }
+            QPushButton#primaryBtn {
+                background-color: #667eea;
+                color: white;
+                border-radius: 10px;
+                font-weight: 600;
+                border: none;
+            }
+            QPushButton#primaryBtn:hover {
+                background-color: #5a67d8;
+            }
+            QPushButton {
+                 color: #667eea;
+                 font-weight: 600;
+                 background: transparent;
+                 border: none;
+            }
+            QPushButton:hover {
+                background: transparent;
+                text-decoration: underline;
+            }
+        """)
 
         # Main Layout
         root_layout = QVBoxLayout(self)
@@ -42,83 +99,73 @@ class LoginDialog(QDialog):
         root_layout.setAlignment(Qt.AlignCenter)
 
         # Card Container
-        card = StyleHelper.create_card_frame()
-        card.setFixedWidth(380)
+        from PyQt5.QtWidgets import QGraphicsDropShadowEffect
+        card = QFrame()
+        card.setObjectName("card")
+        card.setFixedWidth(400)
+        
+        # Shadow for card
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(40)
+        shadow.setColor(QColor(0, 0, 0, 50))
+        shadow.setOffset(0, 10)
+        card.setGraphicsEffect(shadow)
         
         layout = QVBoxLayout(card)
         layout.setContentsMargins(40, 40, 40, 40)
-        layout.setSpacing(24)
-
-        # Logo (Text based)
-        logo_label = QLabel('CE')
-        logo_label.setStyleSheet("font-size: 48px; font-weight: 800; color: #6366f1; margin-bottom: 5px;")
-        logo_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(logo_label)
+        layout.setSpacing(20)
 
         # Titles
-        title = QLabel('ChemViz')
+        title = QLabel('Chemical Equipment\nVisualizer')
         title.setObjectName("headerTitle")
         title.setAlignment(Qt.AlignCenter)
         layout.addWidget(title)
-
-        subtitle = QLabel('Sign in to access your dashboard')
-        subtitle.setObjectName("subText")
-        subtitle.setAlignment(Qt.AlignCenter)
-        layout.addWidget(subtitle)
-
-        layout.addSpacing(10)
+        
+        sub_title = QLabel('Login')
+        sub_title.setStyleSheet("font-size: 24px; font-weight: 600; color: #333; margin-bottom: 20px;")
+        sub_title.setAlignment(Qt.AlignCenter)
+        layout.addWidget(sub_title)
 
         # Form
         username_label = QLabel('Username')
-        username_label.setObjectName("subText")
+        username_label.setStyleSheet("font-size: 13px; font-weight: 600; color: #94a3b8; margin-bottom: 4px;")
         layout.addWidget(username_label)
         
         self.username_input = QLineEdit()
-        self.username_input.setPlaceholderText('Enter your username')
         layout.addWidget(self.username_input)
 
         password_label = QLabel('Password')
-        password_label.setObjectName("subText")
+        password_label.setStyleSheet("font-size: 13px; font-weight: 600; color: #94a3b8; margin-bottom: 4px; margin-top: 10px;")
         layout.addWidget(password_label)
         
         self.password_input = QLineEdit()
-        self.password_input.setPlaceholderText('Enter your password')
         self.password_input.setEchoMode(QLineEdit.Password)
         layout.addWidget(self.password_input)
 
         layout.addSpacing(20)
 
         # Buttons
-        login_btn = QPushButton('Sign In')
+        login_btn = QPushButton('Login')
         login_btn.setObjectName("primaryBtn")
         login_btn.setCursor(Qt.PointingHandCursor)
         login_btn.setMinimumHeight(45)
         login_btn.clicked.connect(self.handle_login)
         layout.addWidget(login_btn)
 
-        # Divider
-        div_layout = QHBoxLayout()
-        line1 = QFrame()
-        line1.setFrameShape(QFrame.HLine)
-        line1.setStyleSheet("color: #334155;")
-        lbl = QLabel("OR")
-        lbl.setStyleSheet("color: #475569; font-size: 11px;")
-        line2 = QFrame()
-        line2.setFrameShape(QFrame.HLine)
-        line2.setStyleSheet("color: #334155;")
+        # Register Link (Bottom)
+        reg_layout = QHBoxLayout()
+        reg_layout.setAlignment(Qt.AlignCenter)
+        reg_lbl = QLabel("Don't have an account?")
+        reg_lbl.setStyleSheet("color: #666; font-size: 13px;")
         
-        div_layout.addWidget(line1)
-        div_layout.addWidget(lbl)
-        div_layout.addWidget(line2)
-        layout.addLayout(div_layout)
-
-        register_btn = QPushButton('Create Account')
+        register_btn = QPushButton('Register here')
         register_btn.setCursor(Qt.PointingHandCursor)
-        register_btn.setMinimumHeight(45)
         register_btn.clicked.connect(self.handle_register)
-        layout.addWidget(register_btn)
+        
+        reg_layout.addWidget(reg_lbl)
+        reg_layout.addWidget(register_btn)
+        layout.addLayout(reg_layout)
 
-        layout.addStretch()
         root_layout.addWidget(card)
 
     def handle_login(self):
