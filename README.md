@@ -150,13 +150,6 @@ The CSV file must contain the following columns:
 - **Pressure**: Float (e.g., 10.2)
 - **Temperature**: Float (e.g., 25.3)
 
-Example:
-```csv
-Equipment Name,Type,Flowrate,Pressure,Temperature
-Pump A1,Pump,100.5,10.2,25.3
-Reactor R1,Reactor,75.3,8.9,45.2
-```
-
 ## 🔐 Features
 
 ### Authentication & Security
@@ -254,17 +247,9 @@ To test the application:
 5. Generate a PDF report
 6. Check the upload history
 
-## 📞 Support
-
-For issues or questions:
-1. Check the individual README files in each directory
-2. Review the API error messages
-3. Check browser console (web app) or terminal output (desktop app)
-4. Verify backend is running on port 8000
-
 ## 📄 License
 
-This project is created for FOSSEE (Free/Libre and Open Source Software for Education)
+This project is created for FOSSEE
 
 ## 🔄 Workflow
 
@@ -285,46 +270,3 @@ This project is created for FOSSEE (Free/Libre and Open Source Software for Educ
 
 ### Frontend Configuration (src/api.js)
 - `API_BASE_URL`: Update for production deployment
-
-## 🐛 Troubleshooting
-
-### "Cannot connect to backend"
-- Ensure Django server is running on port 8000
-- Check CORS settings in Django
-- Verify firewall allows localhost:8000
-
-### "CSV upload fails"
-- Verify CSV format matches requirement
-- Check file size is under 5MB
-- Ensure columns are correctly named
-
-### "Charts not displaying"
-- Check if data has been uploaded
-- Verify browser console for errors
-- Ensure Chart.js is loaded
-
-## 🚢 Deployment
-
-### Backend Deployment
-```bash
-# Prepare for production
-python manage.py collectstatic
-# Use Gunicorn or similar WSGI server
-gunicorn config.wsgi
-```
-
-### Frontend Deployment
-```bash
-cd frontend-web
-npm run build
-# Serve build folder with web server
-```
-
-### Desktop Deployment
-- Package as executable using PyInstaller
-- Create installer for distribution
-
----
-
-**Created**: January 2026
-**Last Updated**: January 2026
