@@ -35,31 +35,85 @@ Centralized CSS-like `STYLESHEET` strings applying Global Selectors for consiste
 
 ## 🚀 Development Setup
 
-### **Environment Initialization**
+### **Prerequisites**
+- Python 3.8 - 3.12 (Python 3.13+ may have compatibility issues with some dependencies)
+- Ensure Python is added to your system PATH
+
+### **Setup Instructions**
+
+#### **For macOS**
+
+**Option 1: Using Homebrew (Recommended)**
 ```bash
-# Clone and navigate to the component
+# Navigate to the desktop frontend
 cd frontend-desktop
 
-# Create isolated Python environment (USE PYTHON 3.11 or 3.12)
-# Note: Python 3.14+ is currently incompatible with pandas C-extensions
-python3.12 -m venv venv
-source venv/bin/activate
+# Install Python 3.11 via Homebrew
+brew install python@3.11
 
-# Install requirements
-pip install -r requirements.txt
+# Install PyQt5 via Homebrew (provides better macOS integration)
+brew install pyqt@5
+
+# Install other Python dependencies
+/opt/homebrew/bin/pip3 install -r requirements.txt
+
+# Make the launcher executable and run
+chmod +x run_desktop.sh
+./run_desktop.sh
 ```
 
-### **Execution**
-**Standard Launch**:
+**Option 2: Using Virtual Environment**
 ```bash
+cd frontend-desktop
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
 python main.py
 ```
 
-**Developer Launcher (Mac Specific)**:
-Automatically configures `PYTHONPATH` and Homebrew links.
+#### **For Windows**
+
+```powershell
+# Navigate to the desktop frontend
+cd frontend-desktop
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+```
+
+#### **For Linux**
+
 ```bash
-chmod +x run_desktop.sh
-./run_desktop.sh
+cd frontend-desktop
+
+# Install system dependencies (Ubuntu/Debian)
+sudo apt-get update
+sudo apt-get install python3-pyqt5 python3-pip
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
 ```
 
 ---
@@ -86,6 +140,5 @@ chmod +x run_desktop.sh
 
 ## ❓ Troubleshooting & Optimization
 
-*   **NameError / Import Errors**: Ensure you are running within the `venv`. The app relies on `QtWidgets.QLineEdit`.
 *   **CORS / Connection Refused**: The desktop client expects the backend to be listening at `http://127.0.0.1:8000`. This can be reconfigured in `main_window.py` if needed.
 *   **High-DPI Support**: Running on Retina/4K monitors? The framework automatically handles `AA_EnableHighDpiScaling`.

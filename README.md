@@ -93,88 +93,39 @@ chemical-equipment-visualizer/
 
 ## 🚀 Getting Started
 
+### Quick Setup Guide
+
+This project consists of three main components. For detailed setup instructions for each component, please refer to their respective README files:
+
+1. **Backend (Django REST API)** - Required for both frontends
+   - See [backend/README.md](backend/README.md) for detailed setup instructions
+   - Runs on `http://localhost:8000`
+
+2. **Web Frontend (React)**
+   - See [frontend-web/README.md](frontend-web/README.md) for detailed setup instructions
+   - Runs on `http://localhost:3000`
+
+3. **Desktop Frontend (PyQt5)**
+   - See [frontend-desktop/README.md](frontend-desktop/README.md) for platform-specific setup instructions
+   - Standalone desktop application
+
 ### Prerequisites
 - Python 3.8+ (for backend and desktop app)
 - Node.js 14+ (for web frontend)
 - Git
 
-### Backend Setup
+### Recommended Setup Order
 
-1. Navigate to backend directory:
-```bash
-cd chemical-equipment-visualizer/backend
-```
+1. **Start with the Backend** (required)
+   ```bash
+   cd backend
+   # Follow instructions in backend/README.md
+   ```
 
-2. Create and activate virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Apply migrations:
-```bash
-python manage.py migrate
-```
-
-5. Create superuser (optional):
-```bash
-python manage.py createsuperuser
-```
-
-6. Start Django server:
-```bash
-python manage.py runserver
-```
-
-The backend will be available at `http://localhost:8000`
-
-### Web Frontend Setup
-
-1. Navigate to frontend-web directory:
-```bash
-cd chemical-equipment-visualizer/frontend-web
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start development server:
-```bash
-npm start
-```
-
-The web app will open at `http://localhost:3000`
-
-### Desktop Frontend Setup
-
-1. Navigate to frontend-desktop directory:
-```bash
-cd chemical-equipment-visualizer/frontend-desktop
-```
-
-2. Create and activate virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Run the application:
-```bash
-python main.py
-```
+2. **Then choose your frontend:**
+   - For web interface: `cd frontend-web` and follow [frontend-web/README.md](frontend-web/README.md)
+   - For desktop application: `cd frontend-desktop` and follow [frontend-desktop/README.md](frontend-desktop/README.md)
+   - Or set up both for full flexibility!
 
 ## 📝 API Endpoints
 
