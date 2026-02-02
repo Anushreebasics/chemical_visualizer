@@ -9,9 +9,11 @@ function History({ history, onGeneratePDF }) {
   const [modalData, setModalData] = useState([]);
   const [loadingModal, setLoadingModal] = useState(false);
 
-  const list = Array.isArray(history)
-    ? history
-    : (history && Array.isArray(history.results) ? history.results : []);
+  const list = useMemo(() => {
+    return Array.isArray(history)
+      ? history
+      : (history && Array.isArray(history.results) ? history.results : []);
+  }, [history]);
 
   const processedData = useMemo(() => {
     let data = [...list];
