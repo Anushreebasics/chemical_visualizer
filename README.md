@@ -2,6 +2,13 @@
 
 A hybrid web and desktop application for uploading, processing, and visualizing chemical equipment data. Built with Django backend, React frontend, and PyQt5 desktop application.
 
+## 🌐 Live Demo
+
+- **Web App**: [https://chemical-visualizer-ecru.vercel.app](https://chemical-visualizer-ecru.vercel.app)
+- **Backend API**: [https://chemical-equipment-backend-6trw.onrender.com](https://chemical-equipment-backend-6trw.onrender.com)
+
+> ⚠️ **First-time users**: The first request may take 30-60 seconds as the free-tier backend wakes up from sleep. Please be patient! Subsequent requests will be fast.
+
 ## 📋 Project Overview
 
 This application allows users to:
@@ -92,6 +99,8 @@ chemical-equipment-visualizer/
 ```
 
 ## 🚀 Getting Started
+
+> **📝 Note for Deployed App Users**: The live demo is hosted on free-tier services (Render + Vercel). The **first request after inactivity may take 30-60 seconds** as the backend server wakes up. Subsequent requests will be fast. This is normal behavior for free-tier deployments.
 
 ### Quick Setup Guide
 
