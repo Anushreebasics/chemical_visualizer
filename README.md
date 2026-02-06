@@ -7,7 +7,10 @@ A hybrid web and desktop application for uploading, processing, and visualizing 
 - **Web App**: [https://chemical-visualizer-ecru.vercel.app](https://chemical-visualizer-ecru.vercel.app)
 - **Backend API**: [https://chemical-equipment-backend-6trw.onrender.com](https://chemical-equipment-backend-6trw.onrender.com)
 
-> ⚠️ **First-time users**: The first request may take 30-60 seconds as the free-tier backend wakes up from sleep. Please be patient! Subsequent requests will be fast.
+> ⚠️ **Free-tier cold start notice**: The backend is hosted on Render’s free plan, so it may take **30–60 seconds** to wake up after inactivity. If the app looks stuck:
+> 1) Open the Backend API link once to wake the server.
+> 2) Wait ~1 minute.
+> 3) Refresh the Web App.
 
 ## 📋 Project Overview
 
